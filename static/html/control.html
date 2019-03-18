@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Управление КММ</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.css" />
+    <link rel="stylesheet" href="/static/css/control.css" />
+
+    <script src="/static/js/vue.js"></script>
+    <script src="/static/js/axios.js"></script>
+
+
+</head>
+<body>
+<nav>
+    <a href="/">Главная</a>
+    <a href="/kmm">Передача данных</a>
+    <a href="/static/html/diagnostik.html">Диагностика</a>
+    <a href="/static/html/help.html">Помощь</a></nav>
+<div id="main" class="container">
+
+    <div id="alarm_panel">
+
+    <table id="alarm_table" v-if="act_alarms.length!=0">
+        <tbody>
+        <tr v-for="alarm in act_alarms"  v-bind:class="{ warn: alarm.Atype==1,alarm: alarm.Atype==2,critical: alarm.Atype==3,na: alarm.Atype==0, }"><td>{{alarm.Atype>0 ? getDate(alarm.Time):""}}</td><td>{{alarm.Atype>0 ? getTime(alarm.Time):""}}</td><td>{{alarms_type[alarm.Atype]}}</td><td>{{alarms_category[alarm.Num]}}</td></tr>
+        </tbody>
+    </table>
+
+    </div>
+    <section class="panels">
+    <div id="left_panel">
+        <div id="control_buttons">
+            <div >
+            <span>Машина</span><br>
+                <button class="buttons green_button" v-on:click="input_change('on')"> Вкл.</button>
+                <button class="buttons red_button" v-on:click="input_change('off')">Выкл.</button>
+            </div>
+            <div >
+            <span>Автоматический режим</span><br>
+            <button class="buttons green_button"  v-on:click="input_change('start')">Старт</button>
+                <button class="buttons red_button"  v-on:click="input_change('stop')">Стоп</button>
+            </div>
+        </div>
+
+        <state-component name="Основной цикл" v-bind:state="state+':  '+state_descr[state]"></state-component>
+        <state-component name="Цикл маркировки" v-bind:state="paint_state+':  '+paint_state_descr[paint_state]"></state-component>
+        <state-component name="Цикл клеймовки"  v-bind:state="punch_state+':  '+punch_state_descr[punch_state]"></state-component>
+        <state-component id="state" name="СТАТУС МАШИНЫ" v-bind:state="machine_states[machine_state]"></state-component>
+
+
+        <div id="state_panel">
+
+            <info-box name="Модули безопасности:" p1_name="Аварийн. цепи" p2_name="коробка/ограждение" v-bind:state1="safety_emerg ? 1:0" v-bind:state2="safety_door ? 1:0"></info-box>
+            <info-box name="Уровни:" p1_name="Краска" p2_name="Растворитель" v-bind:state1="paint_level_ok ? 1:0" v-bind:state2="solvent_level_ok ? 1:0"></info-box>
+            <info-box name="Аварийный останов:" p1_name="Оператор:" p2_name="Пульт" v-bind:state1="stop_operator ? 1:0" v-bind:state2="stop_maint ? 1:0"></info-box>
+            <info-box name="Давление:" p1_name="Основной воздух:" p2_name="Рабочий воздух:" v-bind:state1="press_prim ? 1:0" v-bind:state2="press_sec ? 1:0"></info-box>
+            <info-box name="Тех. обслуживание:" p1_name="Автомат" p2_name="Обслуживание" v-bind:state1="auto_switch ? 1:0" v-bind:state2="maint_switch ? 1:0"></info-box>
+            <info-box name="Драйверы:" p1_name="Маркировка" p2_name="Клеймовка" v-bind:state1="paint_driver_ok ? 1:0" v-bind:state2="punch_driver_ok ? 1:0"></info-box>
+            <div id="temp_paint_h" >Температура клеймовочной головки: <span>0</span>С</div>
+        </div>
+
+
+    </div>
+    <div id="right_panel">
+        <div id="sens_sim">
+      <h4>Имитация датчиков</h4>
+            <ticktack-btn  name="Наличие листа" v-on:send_mess="input_change('plate_on')" :on_data.sync="plate_present_sensor_sim"></ticktack-btn>
+            <ticktack-btn name="Контакт марк. г. с листом" v-on:send_mess="input_change('mark_contact')" :on_data.sync="plate_contact_sensor_sim"></ticktack-btn>
+            <ticktack-btn name="Верх. положение марк. г." v-on:send_mess="input_change('mark_up_pos')" :on_data.sync="up_pos_sensor_sim"></ticktack-btn>
+            <ticktack-btn name="Контакт клейм. с листом" v-on:send_mess="input_change('punch_contact')" :on_data.sync="punch_cont_sens_sim"></ticktack-btn>
+            <ticktack-btn name="Верх. положение клейм." v-on:send_mess="input_change('punch_up_pos')" :on_data.sync="up_punch_pos_sim"></ticktack-btn>
+        </div>
+        <div id="conn_pane">
+            <h4>Соединение</h4>
+            <data-field name="Контроллер" v-bind:state="connect_ctrl" class="data_field"></data-field>
+            <data-field name="База данных" v-bind:state="connect_db" class="data_field"></data-field>
+        </div>
+        <div style="text-align: left" v-if="test_mode">
+            <h4> Тестирование данных</h4>
+            Движение рольганга <input v-model="roll_on" type="checkbox"  /><br>
+            Мг рабочее пол. <input v-model="mark_work_sensor" type="checkbox" /><br>
+            Верх мг <input v-model="mark_up_sensor" type="checkbox" /><br>
+            Контакт клейм <input v-model="punch_cont_sensor" type="checkbox" /><br>
+            Верх клеймовки  <input v-model="up_punch_sensor" type="checkbox" /><br>
+            Траверса 1 <input v-model="trav_pos1" type="checkbox" /><br>
+            Траверса 2  <input v-model="trav_pos2" type="checkbox" /><br>
+            Наличие листа <input v-model="plate_present_sensor" type="checkbox" /><br>
+            Движение колес <input v-model="mark_wheel_move" type="checkbox" /><br>
+            Клеймовка низ <input v-model="punchDown" v-on:click="move_p_down" type="checkbox" /><br>
+            <button v-on:click="animation" >Анимация</button>
+        </div>
+
+    </div>
+
+    <div id="center_panel">
+<div id="data_status"><div >Статус данных:</div><div>{{mark_data_descr[mark_data_status]}}</div></div>
+<div id="plate_info" >
+    <div v-if="Id!=0 && mark_data_status>=16"><span>ID-крат: {{Id}}-{{krat}}</span><span > Ширина:{{width}}</span><span > Длина:{{length}}</span><span > Толщина:{{thick}}</span></div>
+    <div v-if="Id==0 || mark_data_status<16"><span>---</span></div>
+</div>
+    <div id="center_buttons">
+        <span style="color: lightgreen"> {{kmm_view}}</span>
+        <button v-on:click="kmm_view= 0" v-bind:class="{on_btn:kmm_view==0 }">КММ</button><button v-bind:class="{on_btn:kmm_view==1,dis_btn:mark_data_status<16 }"  v-on:click="mark_data_status>=16 ? kmm_view =1:kmm_view =0">Маркировка</button>
+    </div>
+
+<div id="im_keeper">
+    <object v-if="kmm_view==0" id="svgObject" data="/static/img/import_v1.svg" type="image/svg+xml" width="600" >
+        Your browser doesn't support SVG
+    </object>
+        <div v-if="kmm_view==1">
+            <img src="/paint_image?actual=1" />
+        </div>
+    <div v-if="kmm_view==1">
+        <img src="/panch_image?actual=1" />
+    </div>
+    <div id="plate_pos" v-if="kmm_view==0">
+        <table >
+<tr> <td>Начало маркировки:</td><td> {{mark_begin}}</td></tr>
+<tr><td>Положение листа:</td><td> {{list_pos}}</td></tr>
+</table>
+    </div>
+
+
+</div>
+
+    </div>
+    </section>
+</div>
+<script src="/static/js/control.js"></script>
+</body>
+</html>

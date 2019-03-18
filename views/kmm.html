@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.Title}}</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.css" />
+    <link rel="stylesheet" href="/static/css/kmm.css" />
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<header></header>
+<div class="container" id="root">
+
+    <div class="row">
+
+
+        <div class="col-md-8">
+            <nav>
+                <a href="/">Главная</a>
+                <a href="/static/html/diagnostik.html">Диагностика</a>
+                <a href="/static/html/control.html">Управление</a>
+                <a href="/static/html/help.html">Помощь</a>
+            </nav>
+
+       <select  size="1" id="slab_date">
+       {{range $index, $element :=  .Dates}} <option value="{{$element}}">{{$element}}</option> {{end}}
+       </select>
+
+
+    <input  id="all_slabs_cbx" type="checkbox"/>Все <input checked id="id_cbx"type="checkbox" />
+            ID сляба <input id="slab_num" type="text"/>
+            <button id="ret_btn">Вернуть слябы</button>
+            <button id="upd_btn">Обновить</button>
+            <button id="dict_btn" >Словарь</button><button style="display: none" id="conn_btn">Связь с КММ</button>
+
+            <div id="table_div">
+    <table id="main">
+        <thead>
+        <tr ><th>Плавка</th><th>Марка</th><th>Толщ.</th><th>Ширина</th><th>Длина</th><th>Фабр.</th><th>Поз.</th><th>Заказ</th><th>Лот</th><th>Поз.</th>
+            <th class="idsx">ID</th><th class="idsx">Крат</th><th class="idsx">ЦНРС</th><th class="idsx">№ парт.</th><th class="idsx">УЗК</th></tr>
+        </thead>
+        <tbody id="mbody">
+
+        </tbody>
+    </table>
+            </div>
+            <div class="remarks"><div class="remarks_labels"><span>Примечание</span></div><div class="remarks_area" ><textarea id="remarks"></textarea></div></div>
+            <div class="remarks"><div class="remarks_labels">Доп. условия</div><div class="remarks_area" ><textarea id="add"></textarea ></div></div>
+            <div class="remarks"><div class="remarks_labels">Маркировка</div><div class="remarks_area"><textarea id="marking"></textarea></div></div>
+            <div class="remarks"><div class="remarks_labels">Клеймовка</div><div class="remarks_area"><textarea id="stigma"></textarea></div></div>
+            <div id="info">
+                <span id="contr_info">Контроллер:</span>
+                <span id="db_info">База данныx:</span>
+                <span id="last_mess_time_info">База данныx:</span>
+            </div>
+        </div>
+
+
+
+
+        <div class="col-md-4" id="right">
+
+
+<div class="row">
+    <div class="col-md-3">Маркировка</div>
+    <div class="col-md-7"><input  id="templ_name" type="text"/></div>
+    <div class="col-md-2"><button  id="mark_templ_btn" >...</button></div>
+</div>
+            <div class="row">
+                <div class="col-md-1">1</div>
+                <div class="col-md-9"><input class="line" id="mline1"  type="text"/></div>
+               <div class="col-md-2"> <button class="inbtn" ><<</button></div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">2</div>
+                <div class="col-md-9"><input class="line" id="mline2" type="text"/></div>
+                <div class="col-md-2"> <button class="inbtn" ><<</button></div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">3</div>
+                <div class="col-md-9"><input class="line" id="mline3" type="text"/></div>
+                <div class="col-md-2"> <button class="inbtn" ><<</button></div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">4</div>
+                <div class="col-md-9"><input class="line" id="mline4" type="text"/></div>
+                <div class="col-md-2"> <button class="inbtn"><<</button></div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">5</div>
+                <div class="col-md-9"><input class="line" id="mline5" type="text"/></div>
+                <div class="col-md-2"> <button class="inbtn" ><<</button></div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">6</div>
+                <div class="col-md-9"><input class="line" id="mline6" type="text"/></div>
+                <div class="col-md-2"> <button class="inbtn" ><<</button></div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">7</div>
+                <div class="col-md-9"><input class="line" id="mline7" type="text"/></div>
+                <div class="col-md-2"> <button class="inbtn" ><<</button></div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">8</div>
+                <div class="col-md-9"><input class="line" id="mline8" type="text"/></div>
+                <div class="col-md-2"> <button class="inbtn" ><<</button></div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">9</div>
+                <div class="col-md-9"><input class="line" id="mline9" type="text"/></div>
+                <div class="col-md-2"> <button class="inbtn" ><<</button></div>
+            </div>
+
+            <div class="row">
+
+                <div class="row"> <div class="col-md-4 col-md-offset-8"><button style="margin: 0.1cm" id="MarkSaveBtn" >Сохранить</button> </div></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">Клеймовка</div>
+                <div class="col-md-7" ><input id="p_templ_name" type="text"/></div>
+               <div class="col-md-2"> <button  id="punch_templ_btn">...</button></div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">1</div>
+                <div class="col-md-9"><input class="line" id="pline10" type="text"/></div>
+                <div class="col-md-2"> <button class="inbtn" ><<</button></div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">2</div>
+                <div class="col-md-9"><input class="line" id="pline11" type="text"/></div>
+                <div class="col-md-2"> <button class="inbtn" ><<</button></div>
+            </div>
+            <div class="row">
+                <div class="col-md-1">3</div>
+                <div class="col-md-9"><input class="line" id="pline12" type="text"/></div>
+                <div class="col-md-2"> <button class="inbtn" ><<</button></div>
+            </div>
+           <div class="row"> <div class="col-md-4 col-md-offset-8"><button style="margin: 0.1cm" id="PunchSaveBtn" >Сохранить</button> </div></div>
+            <div ><input type="checkbox" id="drawArownd"> Вокруг клейма<input type="checkbox" id="rotateText"> Перевернуть текст</div>
+
+            <div >Начало <input id="mark_pos" size="10" type="text" value="210" />Глубина: <input type="radio" id="cbx_deep_light" />Легк.<input type="radio" checked  id="cbx_deep_middle"/> Ср.<input type="radio" id="cbx_deep_strong"/> Сильн.</div>
+
+            <button id="send">Отправить</button>
+            <div></div>
+                <div id="markImage">
+
+            </div>
+            <div>Клеймовка</div>
+            <div id="punchImage">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div id="win">
+
+<h3>Выбор шаблона маркировки</h3>
+
+
+               <div id="left_content">
+
+                   <table id="templ_list"></table>
+               </div>
+               <div id="right_content">
+               </div>
+
+        <div id="mark_sel_btns">
+            <button id="delMTmplBtn">Удалить</button><button id="okMTmplBtn">Ok</button><button id="newMarkBtn">Новый</button>
+            <button type="button" id="msclosebtn" onClick="getElementById('win').style.display='none';">Закрыть</button>
+        </div>
+
+</div>
+
+<div id="p_win" style="display:none;">
+
+        <h3>Выбор шаблона клеймовки</h3>
+        <div>
+
+            <div id="p_left_content">
+
+                <table id="p_templ_list"></table>
+            </div>
+            <div id="p_right_content">
+            </div>
+
+        </div>
+       <div class="btn_div">
+           <button id="delPTmplBtn">Удалить</button>
+           <button id="close_p_w_btn" type="button" onClick="getElementById('p_win').style.display='none';">Закрыть</button>
+           <button id="p_okMTmplBtn">Ok</button>
+           <button id="p_newMarkBtn">Новый</button>
+
+       </div>
+
+
+
+
+</div>
+<div id="ret_slab" >
+    <div id="ret_slab_data">
+        <table>
+            <thead>
+            <tr> <th>Id</th><th>Krat</th><th>List</th></tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+    </div>
+    <div id="ret_slab_btn">
+        <button id="ret_ret_w_btn">Вернуть</button>
+        <button id="upd_ret_w_btn">Обновить</button>
+        <button id="close_ret_w_btn">Закрыть</button>
+    </div>
+
+</div>
+<div id="dict">
+    <textarea>
+
+    </textarea>
+    <div>
+    <button id="ok_dict_btn">Ok</button>
+    <button id="close_dict_btn">Отмена</button>
+    </div>
+
+</div>
+
+<div id="add_text">
+    <div id="add_text_data">
+
+    </div>
+    <div>
+        <button id="add_text_close_btn">Ок</button>
+    </div>
+
+</div>
+
+<div id="alert_info">
+    <div style="width: 100%">Cообщение <button style="float: right" id="alert_close">x</button></div>
+    <div  class="text">
+    <span >Лист 123444 добавлен</span>
+    </div>
+
+</div>
+
+
+<script src="/static/js/kmm.js">
+</script>
+</body>
+</html>

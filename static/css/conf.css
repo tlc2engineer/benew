@@ -1,0 +1,45 @@
+body{
+    background: url(/static/img/background.jpg);
+}
+
+section {
+    width: 1000px;
+    height: 600px;
+    margin: auto;
+    background: white;
+    border:1px solid black;
+    border-radius: 20px;
+    opacity: 0.8;
+}
+
+h1{
+    text-align: center;
+    margin-top: 20px;
+    display: block;
+    color: #0d8aee;
+}
+p {
+    margin-left: 20px;
+    font-size: 12pt;
+    color: blue;
+    font-family: Cursive;
+}
+
+a{
+    background: blue;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    margin: 20px;
+    text-decoration: none;
+    display: block;
+    border: 1px solid black;
+    width: 150px;
+    height: 25px;
+    border-radius: 20px;
+}
+
+a:hover{
+    background: white;
+    color: blue;
+}

@@ -1,0 +1,448 @@
+
+body{
+    background: url(/static/img/background.jpg);
+    font-family: cursive;
+}
+#root {
+    margin-top: 0.1cm;
+}
+table {
+    margin-top: 5px;
+    border-bottom: 1px lightgray solid;
+    width: 100%;
+
+}
+th,td {
+    text-align: center;
+}
+
+.invis{
+    display: none;
+}
+
+#right{
+    border: 1px solid black;
+    padding: 3px;
+}
+
+#mark_pos{
+    width: 50px;
+}
+
+#send {
+    margin-top: 3px; 
+   width:  100%;
+    font-size: 18px;
+    background: white;
+    color: black;
+}
+#mark_label  {
+    width: 100%;
+    text-align: center;
+}
+.content {
+    width: 100%; /* Ширина слоя */
+   font-size: 20px;
+}
+
+#templ_name,#p_templ_name {
+    width:100%;
+    height: 23px;
+
+}
+
+.line {
+    width: 100%;
+    height: 23px;
+    color: brown;
+    background: lightyellow;
+
+}
+
+.pline{
+    width: 100%;
+    height: 23px;
+}
+
+
+
+.inbtn,#punch_templ_btn,#mark_templ_btn {
+    width: 1cm;
+    height: 23px;
+}
+
+#table_div {
+    background: whitesmoke;
+    height: 8cm;
+    overflow: auto;
+    border: solid 1px black;
+
+}
+
+.remarks {
+    height: 2cm;
+    width: 100%;
+    position: relative;
+    margin-top: 3px;
+}
+.remarks div {
+    position: absolute;
+}
+
+.remarks textarea{
+    width: 100%;
+    height: 2cm;
+}
+
+.remarks_labels{
+    width: 4cm;
+    height: 2cm;
+    left: 0cm;
+    text-align: center;
+
+
+}
+.remarks_area {
+    left: 4cm;
+    right: 0;
+    height: 2cm;
+}
+.selected{
+    background: lightblue;
+}
+
+
+/*
+Маркировка окно
+ */
+#win{
+   background: lightblue;
+    position: absolute;
+    left: 80%;
+    display: none;
+    top: 30%;
+    margin-top: -200px;
+    overflow: hidden;
+    z-index: 2000;
+    width: 510px;
+    padding: 0px;
+    color: black;
+    margin-left: -250px;
+    border: 1px lightslategray solid;
+}
+#win button {
+
+    line-height: 20px;
+    padding: 5px;
+    border: 1px black solid;
+
+}
+
+#win h3 {
+    text-align: center;
+    color: black;
+}
+
+
+
+#left_content{
+   float: left;
+    height: 300px;
+    width: 200px;
+    overflow: auto;
+
+    font-size: 18px;
+    border: 1px solid black;
+    margin: 2px;
+
+    background: #0d8aee;;
+}
+
+#right_content{
+    float: left;
+
+    height: 300px;
+    width: 300px;
+    border: solid 1px black;
+    font-size: 14px;
+    color: white;
+    background: black;
+}
+
+#mark_sel_btns{
+    float: right;
+    margin: 3px;
+    padding: 5px;
+   /* border: solid 1px lightslategray;*/
+    width: 500px;
+
+}
+#delMTmplBtn,#okMTmplBtn,#newMarkBtn{
+    margin-right: 10px;
+}
+#okMTmplBtn{
+    width: 50px;
+}
+#msclosebtn {
+    margin-right: 1px;
+    float: right;
+}
+/*
+Клеймовка окно
+ */
+#p_win{
+    background: lightblue;
+    position: absolute;
+    top: 37%;
+    right: 7%;
+    border: 1px lightslategray solid;
+
+}
+
+#p_win h3 {
+    text-align: center;
+    color: black;
+}
+#p_left_content{
+    border: solid 1px;
+    width: 200px;
+    margin-left: 20px;
+    float: left;
+    height: 300px;
+    overflow: auto;
+    font-size: 18px;
+    background: #0d8aee;
+
+}
+#p_right_content{
+
+    margin-left: 10px;
+    margin-right: 5px;
+    width: 250px;
+    float: left;
+    height: 300px;
+    color: white;
+    background: black;
+}
+
+#p_delMTmplBtn{
+    float: left;
+}
+
+.btn_div {
+    float: left;
+    width: 100%;
+    padding: 10px;
+background: white;
+    border-top: 1px solid lightslategray;
+    margin-top: 2px;
+
+}
+.btn_div button{
+    line-height: 20px;
+    padding: 5px;
+    border: 1px black solid;
+    margin-left: 5px;
+
+}
+#close_p_w_btn{
+   float: right;
+}
+#p_okMTmplBtn{
+    width: 60px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+/*
+Возврат слябов
+ */
+
+#ret_slab{
+
+    display:none;
+    position: absolute;
+    left: 40%;
+    top: 5%;
+    width: 300px;
+    height: 200px;
+    border: 1px solid lightslategray;
+
+
+}
+#ret_slab table{
+    height: 100%;
+    margin-top: 0px;
+}
+#ret_slab_data{
+    padding: 1px;
+    overflow: auto;
+    float: top;
+    height: 160px;
+    background: #0d8aee;
+}
+#ret_slab button{
+    margin: 5px;
+    border: black 1px solid;
+}
+#ret_slab th {
+    background: lightblue;
+    border-bottom: 1px black solid;
+}
+#ret_slab td{
+    padding: 2px;
+}
+
+#close_ret_w_btn{
+    float: right;
+}
+
+
+/*
+Словарь
+ */
+#dict{
+    display:none;
+    position: absolute;
+    left: 45%;
+    top: 5%;
+    overflow: auto;
+    background: #0d8aee;
+
+}
+#dict textarea{
+    background: lightblue;
+    height: 300px;
+    width: 300px;
+}
+#close_dict_btn {
+    float: right;
+    margin: 5px;
+}
+#ok_dict_btn {
+    float: left;
+    width: 50px;
+    margin: 5px;
+}
+.ok_dict_btn button{
+    line-height: 20px;
+    padding: 5px;
+    border: 1px black solid;
+    margin-left: 5px;
+
+}
+/*
+Дополнение текста
+ */
+#add_text{
+    display:none;
+    position: absolute;
+    width: 250px;
+
+    background: whitesmoke;
+}
+#add_text_data{
+    overflow: auto;
+    height: 250px;
+}
+#add_text_close_btn{
+    width: 250px;
+    height: 30px;
+}
+
+#markImage img {
+    width: 100%;
+}
+
+#punchImage img {
+    width: 100%;
+}
+
+#MarkSaveBtn,#PunchSaveBtn{
+    height: 25px;
+    font-size: 14px;
+
+}
+#info {
+margin-top: 20px;
+    color: black;
+    font-size: 16px;
+    font-style: italic;
+}
+#info span{
+    margin-left: 30px;
+}
+.btn_act{
+    color: black;
+    background: blue;
+}
+
+#diagn,#control_btn{
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+#alert_info{
+    display: none;
+    position: absolute;
+    right: 45%;
+    top: 40%;
+
+    text-align: center;
+    background: #0d8aee;
+    border: 1px lightgray solid;
+}
+#alert_info:after{
+    clear: both;
+}
+#alert_info button{
+    height: 25px;
+    width: 25px;
+    font-size: 12px;
+
+}
+#alert_info div:first-child {
+    font-size: 18px;
+    font-family: "Courier New";
+}
+
+#alert_info div.text{
+    background: lightblue;
+
+    width: 250px;
+}
+
+#alert_info div.text{
+    padding: 5px;
+    font-size: 20px;
+}
+nav a{
+    font-size: 15px;
+    text-align: center;
+    text-decoration: red;
+    display: inline-block;
+    border: 1px solid black;
+    width: 100px;
+    height: 25px;
+    border-radius: 5px;
+    background: white;
+    margin: 3px;
+    color: blue;
+}
+a:hover{
+    background: blue;
+    color: white;
+}
+nav{
+    border: 1px solid black;
+    margin-bottom: 3px;
+    background: #0d8aee;
+}
+
+.container{
+    background: gray;
+    opacity: 0.8;
+}
+
+
+
+
+

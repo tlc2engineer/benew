@@ -1,0 +1,37 @@
+body{
+    background: url(/static/img/background.jpg);
+    font-family: Cursive;
+}
+
+main{
+    position: relative;
+    margin: auto;
+    border-radius: 20px;
+    height: 600px;
+    width: 1000px;
+    background: gray;
+    opacity: 0.8;
+    text-align: center;
+    border: 1px solid black;
+}
+a{
+    font-size: 20px;
+    text-decoration: none;
+    display: block;
+    border: 1px solid black;
+    width: 200px;
+    height: 30px;
+    border-radius: 20px;
+}
+section.refs{
+    width: 200px;
+    margin: auto;
+
+}
+.refs a{
+    margin-bottom: 5px;
+    color: blue;
+}
+.refs a:hover{
+    background: white;
+}

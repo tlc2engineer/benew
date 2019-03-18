@@ -1,0 +1,174 @@
+
+body{
+    background: url(/static/img/background.jpg);
+    font-family: Cursive;
+}
+main{
+    width: 1200px;
+    margin: auto;
+}
+
+h1{
+    margin: 20px;
+    text-align: center;
+}
+nav{
+    width: 1200px;
+    margin: auto;
+    border: solid 1px lightgrey;
+    opacity: 0.8;
+
+    background: #0d8aee;
+    padding: 5px;
+}
+a{
+    margin-right: 20px;
+    font-size: 16px;
+    text-decoration: none;
+    color: black;
+    text-underline: white;
+}
+.menu{
+    opacity: 0.8;
+
+    background: #0d8aee;
+    padding: 2px;
+    border: solid 1px white;
+    margin-bottom: 2px;
+}
+#data_table {
+    border-top: 1px solid black;
+    height: 550px;
+    overflow-y: auto;
+}
+
+#data_table tr>td{
+    padding: 2px 2px;
+    color: black;
+    border: 1px solid gray;
+    font-family: Arial;
+}
+
+#data_table tr>th{
+    font-family: Arial;
+    color: darkblue;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
+.alarm{
+    color: black;
+    background: red;
+}
+.warn{
+    color: black;
+    background: yellow;
+}
+.exp{
+    color: gray;
+}
+
+
+
+#file_table {
+    background: whitesmoke;
+    width:100%;
+    border-collapse: collapse;
+}
+#file_table tr>td:first-child {
+    width: 120px;
+    text-align: center;
+}
+
+#file_table tr>td:nth-child(2) {
+    width: 120px;
+    text-align: center;
+}
+
+
+
+#alarm_table {
+    background: whitesmoke;
+    text-align: center;
+
+    border-collapse: collapse;
+    width: 100%;
+}
+#alarm_table td{
+    border: solid 1px black;
+
+}
+
+#alarm_table tr>td:nth-child(1){
+    width:80px;
+}
+#alarm_table tr>td:nth-child(2){
+    width:200px;
+}
+#alarm_table tr>td:nth-child(3){
+    width:200px;
+}
+#alarm_table tr>td:nth-child(4){
+    width:120px;
+}
+#alarm_table tr>td:nth-child(5){
+    width:45%;
+}
+
+
+
+
+.btn_act{
+    color: white;
+    background: blue;
+}
+.autoUpd{
+    color: black;
+    font-family: cursive;
+    color: darkblue;
+    margin-left: 5px;
+    font-size: 18px;
+    font-style: revert;
+}
+
+.mark_table {
+    background: whitesmoke;
+    text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+
+}
+.mark_table td{
+    margin: 20px;
+    border: solid 1px black;
+}
+.mark_table tr>td:nth-child(1){
+    width:100px;
+}
+.mark_table tr>td:nth-child(2){
+    width:100px;
+}
+.mark_table tr>td:nth-child(3){
+    width:100px;
+}
+.mark_table tr>td:nth-child(4){
+    width:100px;
+}
+.mark_table tr>td:nth-child(5){
+    width:30%;
+}
+.mark_table tr>td:nth-child(6){
+    width:30%;
+}
+
+fieldset {
+    border: 1px #0d8aee solid;
+    padding: 5px;
+}
+
+
+button{
+    background: white;
+    color: blue;
+    border: 1px solid black;
+    height: 20px;
+}

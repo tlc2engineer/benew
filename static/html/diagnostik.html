@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Диагностика</title>
+
+    <link rel="stylesheet" href="/static/css/diagn.css" />
+    <script src="/static/js/vue.js"></script>
+    <script src="/static/js/axios.js"></script>
+
+</head>
+<body>
+<header><nav>
+    <a href="/">Главная</a>
+    <a href="/kmm">Передача данных</a>
+    <a href="/static/html/control.html">Управление</a>
+    <a href="/static/html/help.html">Помощь</a>
+</nav></header>
+    <main  id="main_table">
+        <h1 >Диагностика работы.  </h1>
+        <section class="menu">
+            <fieldset>
+            <button id="mark_btn" v-on:click="show_mark"  v-bind:class="{btn_act: state==4 }">Маркировка</button>
+            <button id="ctrl_btn" v-on:click="show_ctrl" v-bind:class="{btn_act: state==2 }">Контроллер</button>
+            <button id="db_btn" v-on:click="show_db" v-bind:class="{btn_act: state==3 }">База данных</button>
+            <button id="alarm_btn" v-on:click="show_alarm" v-bind:class="{btn_act: state==1 }" >Аварии КММ</button>
+            <span class="autoUpd"> Автообновление</span> <input  type="checkbox" v-model="auto"  v-on:click="updateAuto" />
+            <input type="date"/>
+            </fieldset>
+        </section>
+
+        <section id="data_table">
+
+            <table v-if="state==4 " class="mark_table">
+                <tr><th>Дата</th><th>Время</th><th>ID</th><th>Крат</th><th>Результат маркировки</th><th>Результат клеймовки</th></tr>
+                <tr v-for="res in mark_data">
+                    <td>{{ getDate(res.T) }}</td><td>{{ getTime(res.T) }}</td><td>{{ res.SlabId }}</td><td>{{ res.Krat }}</td><td>{{ markText(res.MarkResult) }}</td><td>{{ markText(res.PunchResult) }}</td>
+                </tr>
+
+            </table>
+
+            <table v-if="state==2 || state==3" id="file_table">
+                <tr><th>Дата</th><th>Время</th><th>Событие</th></tr>
+                <tr v-for="log in file_data">
+                    <td>{{ log.Date }}</td><td>{{ log.Time }}</td><td>{{ log.Log }}</td>
+                </tr>
+            </table>
+            <table v-if="state==1" id="alarm_table">
+                <tbody>
+                    <tr><th>№</th><th>Время</th><th>Окончание</th><th>Номер ошибки</th><th>Тип ошибки</th></tr>
+                    <tr v-for="alarm in alarm_data"  v-bind:class="{warn: alarm.Active&&alarm.Atype==1,alarm: alarm.Active&&alarm.Atype>1,exp: !alarm.Active  }">
+                        <td>{{alarm.UniqId}} </td>  <td>{{ formatTime(alarm.Time) }}</td><td>{{ formatTime(alarm.TimeExp) }}</td><td>{{ alarm.Num }}</td><td>{{ getErrText(alarm.Num) }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+    <script src="/static/js/diagnostik.js"></script>
+</body>
+</html>

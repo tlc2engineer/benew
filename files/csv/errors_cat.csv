@@ -1,0 +1,38 @@
+// svgopher - Go mascot remix
+// +build !appengine
+
+package main
+
+import (
+	"os"
+
+	"github.com/ajstarks/svgo"
+)
+
+var (
+	width  = 500
+	height = 300
+	canvas = svg.New(os.Stdout)
+)
+
+func background(v int) { canvas.Rect(0, 0, width, height, canvas.RGB(v, v, v)) }
+
+func gordon(x, y, w, h int) {
+
+	w10 := w / 10
+	w12 := w / 12
+	w2 := w / 2
+	w3 := w / 3
+	w8 := w / 8
+	w6 := w / 6
+	xw := x + w
+	h23 := (h * 2) / 3
+
+	blf := "fill:black"
+	wf := "fill:white"
+	nf := "fill:brown"
+	brf := "fill:brown; fill-opacity:0.2"
+	brb := "fill:rgb(210,161,161)"
+
+	canvas.Gstyle("fill:none; stroke:none")
+	canvas.Bezier(x, y+h, x, y+h, x+w2, y

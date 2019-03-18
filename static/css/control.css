@@ -1,0 +1,334 @@
+body {
+    background: url(/static/img/background.jpg);
+}
+
+.buttons{
+    height: 30px;
+    width: 70px;
+    font-size: 14px;
+    font-family: "Courier New";
+    background: green;
+    border: 1px solid black;
+    color: white;
+    border-radius: 5px;
+}
+.buttons:hover{
+    color: black;
+}
+.green_button{
+    background: green;
+}
+.red_button{
+    background: red;
+}
+
+
+nav{
+    text-align: left;
+}
+#main{
+    position: relative;
+    text-align: center;
+
+}
+
+
+#alarm_panel{
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    right: 0px;
+    background: whitesmoke;
+    height: 65px;
+    overflow: auto;
+    border: 1px black solid;
+
+}
+#alarm_table{
+    width: 100%;
+}
+#alarm_table td{
+    border: 1px black solid;
+}
+#alarm_table tr>td:nth-child(1){
+    width: 80px;
+}
+#alarm_table tr>td:nth-child(2){
+    width: 80px;
+}
+#alarm_table tr>td:nth-child(3){
+    width: 40%;
+}
+#alarm_table tr>td:nth-child(4){
+    width: 40%;
+}
+.na{
+    background: lightslategray;
+}
+.warn{
+    background: yellow;
+}
+.alarm{
+    background: red;
+}
+.critical{
+    background: #d2190b;
+}
+#left_panel{
+    position: absolute;
+
+    left: 0px;
+    width: 350px;
+    border: solid 1px black;
+
+
+}
+#right_panel{
+    position: absolute;
+
+    right: 0px;
+
+    width: 200px;
+
+}
+#center_panel{
+
+    position: absolute;
+    left: 350px;
+    right: 200px;
+
+}
+#mview{
+    width: 600px;
+}
+
+#control_buttons div{
+    float: left;
+    margin-left: 5px;
+}
+.cycle{
+    width: 100%;
+
+}
+.cycle span{
+    font-size: 18px;
+}
+.cycle div{
+    background: yellow;
+    border: solid 1px black;
+    margin: 1px;
+}
+#state{
+    width: 100%;
+}
+#state span{
+    font-size: 14px;
+}
+#state div{
+    background: gray;
+    border: solid 1px black;
+    margin: 1px;
+}
+.data_box{
+    text-align: left;
+    width: 160px;
+    height: 70px;
+    border: dotted 1px black;
+    margin-left: 5px;
+    padding: 3px;
+    float: left;
+}
+.data_box span{
+    font-size: 14px;
+}
+.data_box div{
+    font-size: 12px;
+}
+.data_box img{
+    float: right;
+}
+
+#temp_paint_h {
+    margin-top: 5px;
+    float: left;
+    font-size: 14px;
+    width: 100%;
+    background: white;
+   padding: 2px;
+}
+#sens_sim{
+    width: 100%;
+}
+#sens_sim button{
+    width: 95%;
+    height: 30px;
+    margin-top: 2px;
+}
+.btn_on{
+    background: green;
+}
+#conn_pane{
+    margin-top: 5px;
+
+}
+.data_field{
+    padding: 3px;
+    text-align: left;
+}
+.data_field span{
+    font-family: Calibri;
+    font-size: 18px;
+
+}
+.data_field img{
+    padding-top: 3px;
+    float: right;
+}
+
+#data_status{
+    height: 27px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+
+}
+
+#data_status div:nth-child(1){
+  text-align: center;
+    width: 200px;
+    font-family: cursive;
+    float: left;
+    height: 25px;
+    font-size: 16px;
+    background: lightslategray;
+}
+#data_status div:nth-child(2) {
+
+    background: white;
+    font-size: 18px;
+    background: green;
+}
+
+#im_keeper{
+    position: relative;
+    width: 100%;
+}
+
+#sens1{
+    position: absolute;
+    left: 220px;
+    top: 290px;
+    width: 15px;
+    height: 15px;
+}
+
+.sens_off{
+    fill:#ff0000;
+    fill-opacity:1;
+    stroke:#000000;
+    stroke-width:0.5;
+    stroke-miterlimit:4;
+    stroke-dasharray:none;
+    stroke-opacity:1
+}
+.sens_on{
+    fill:#00ff00;
+    fill-opacity:1;
+    stroke:#000000;
+    stroke-width:0.5;
+    stroke-miterlimit:4;
+    stroke-dasharray:none;
+    stroke-opacity:1
+}
+
+#plate_pos{
+    text-align: left;
+    margin-left: 10px;
+
+    width: 200px;
+}
+#plate_pos td {
+    font-family: cursive;
+    border: solid 1px black;
+    padding: 4px;
+    font-size: 14px;
+}
+#plate_pos tr>td:nth-child(1){
+    color: gray;
+}
+#plate_pos tr>td:nth-child(2){
+    color: blue;
+}
+#plate_info{
+    font-family: cursive;
+    color: black;
+    border: green solid 1px;
+    padding: 2px;
+    text-align: left;
+    font-size: 16px;
+    background: lightgray;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 3px;
+}
+#plate_info span{
+    margin-left: 20px;
+}
+
+#center_buttons button{
+    float: left;
+    width: 100px;
+    margin-left: 10px;
+    border: 1px solid black;
+    background: white;
+}
+
+#center_buttons .on_btn{
+     color: white;
+     background: blue;
+ }
+#center_buttons .dis_btn{
+    color: black;
+    background: lightgray;
+    disabled: true;
+
+}
+
+#im_keeper img{
+    margin: 3px;
+    border: 1px darkgreen solid;
+}
+
+section.panels {
+    position: relative;
+    background: gray;
+    height: 500px;
+    margin-top: 80px;
+    opacity: 0.9;
+}
+nav{
+    opacity: 0.8;
+    border: 1px solid white;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    background: #0d8aee;
+    padding: 2px;
+    margin: auto;
+    width: 1150px;
+}
+nav a{
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 10px;
+    color: blue;
+
+
+
+    padding: 3px;
+    font-family: Cursive;
+}
+a:hover{
+    color: white;
+    background: blue;
+}
