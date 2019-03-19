@@ -41,6 +41,7 @@ func createSymbMap() map[byte]ImageData {
 	return symbMap
 }
 
+/*GetLen - длина*/
 func (i ImageData) GetLen() int {
 	return len([]byte(i))
 }
